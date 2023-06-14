@@ -1,5 +1,4 @@
-import { createContext, useContext, useState } from "react";
-import { apiCient } from "../api/ApiClient";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
   executeJwtAuthenticationService,
   logoutService,
