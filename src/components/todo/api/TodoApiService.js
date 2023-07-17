@@ -42,12 +42,8 @@ export const addNewTodoApi = (username, todo, token) =>
     },
   });
 
-export const registerNewUserApi = (user, token) =>
-  apiCient.post(`/auth/register`, user, {
-    headers: {
-      Authorization: token,
-    },
-  });
+export const registerNewUserApi = (user) =>
+  apiCient.post(`/auth/register`, user);
 
 export const resetApi = (user) => apiCient.post(`/auth/reset`, user);
 export const verifyOtpApi = (user) => apiCient.post(`/auth/verify-otp`, user);
