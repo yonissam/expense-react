@@ -1,4 +1,7 @@
 pipeline {
+tools {
+    nodejs 'nodejs'
+  }
 environment {
 DOCKERHUB_USERNAME = "yoniss"
 APP_NAME = "react-expense"
@@ -13,8 +16,9 @@ dockerImage = ''
     stage('Sonarqube Analysis'){
                                                                 steps {
                                                                   script {
+                                                                  def scannerHome = tool 'sonarscan';
                                                                 withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
-                                                                sh '${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner'
+                                                                sh '${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp'
                                                                 }
     															}
                                                                 }
