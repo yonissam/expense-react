@@ -14,7 +14,7 @@ dockerImage = ''
                                                                 steps {
                                                                   script {
                                                                 withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
-                                                                sh 'mvn sonar:sonar'
+                                                                sh '${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner'
                                                                 }
     															}
                                                                 }
