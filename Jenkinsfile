@@ -17,9 +17,8 @@ dockerImage = ''
       stage('Sonarqube Analysis'){
                                                                 steps {
                                                                   script {
-                                                                  def scannerHome = tool 'sonarscan';
                                                                 withSonarQubeEnv('sonarqube') {
-                                                                 sh "${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=React-SonarQube -Dsonar.sources=. -Dsonar.projectName=React-SonarQube  -Dsonar.host.url=https://sonarqube.local.yetebaberut.com -Dsonar.login=sqp_1b3d308e3c223fbd9f4ac805982c743290a44ac7"
+                                                                 sh "sonar-scanner -Dsonar.projectKey=React-SonarQube -Dsonar.sources=. -Dsonar.projectName=React-SonarQube  -Dsonar.host.url=https://sonarqube.local.yetebaberut.com -Dsonar.login=sqp_1b3d308e3c223fbd9f4ac805982c743290a44ac7"
                                                                 }
     															}
                                                                 }
