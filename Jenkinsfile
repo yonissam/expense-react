@@ -13,12 +13,27 @@ dockerImage = ''
     agent any
     stages{
 
+
+    stage('Test') {
+        steps {
+            sh 'npm install'
+            sh 'npm run test:once -- --coverage'
+        }
+    }
+
     stage('Sonarqube Analysis'){
                                                                 steps {
                                                                   script {
-                                                                  def scannerHome = tool 'sonarscan';
                                                                 withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
-                                                                sh '${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp'
+                                                                 z.sonarqube.scan(
+                                                                                sonarQualityProfiles: ["JavaScript": "SonarQube Profile"],
+                                                                                sonarOpts: [
+                                                                                    'sonar.projectKey': '',
+                                                                                    'sonar.sources': './src',
+                                                                                    'sonar.cpd.exclusions': '**/*-mock.ts',
+                                                                                    'sonar.javascript.lcov.reportPaths': './coverage/lcov.info',
+                                                                                ]
+                                                                            )
                                                                 }
     															}
                                                                 }
