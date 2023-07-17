@@ -17,16 +17,9 @@ dockerImage = ''
       stage('Sonarqube Analysis'){
                                                                 steps {
                                                                   script {
-                                                                withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
-                                                                 z.sonarqube.scan(
-                                                                                sonarQualityProfiles: ["JavaScript": "SonarQube Profile"],
-                                                                                sonarOpts: [
-                                                                                    'sonar.projectKey': '',
-                                                                                    'sonar.sources': './src',
-                                                                                    'sonar.cpd.exclusions': '**/*-mock.ts',
-                                                                                    'sonar.javascript.lcov.reportPaths': './coverage/lcov.info',
-                                                                                ]
-                                                                            )
+                                                                  def scannerHome = tool 'sonarscan';
+                                                                withSonarQubeEnv('sonarqube') {
+                                                                 sh "${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=React-SonarQube -Dsonar.sources=. -Dsonar.projectName=React-SonarQube  -Dsonar.host.url=https://sonarqube.local.yetebaberut.com -Dsonar.login=sqp_1b3d308e3c223fbd9f4ac805982c743290a44ac7"
                                                                 }
     															}
                                                                 }
