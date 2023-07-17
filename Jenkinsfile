@@ -1,7 +1,4 @@
 pipeline {
-tools {
-    nodejs 'nodejs'
-  }
 environment {
 DOCKERHUB_USERNAME = "yoniss"
 APP_NAME = "react-expense"
@@ -12,29 +9,6 @@ dockerImage = ''
 }
     agent any
     stages{
-
-  nodejs {
-      stage('Sonarqube Analysis'){
-                                                                steps {
-                                                                  script {
-                                                                  def scannerHome = tool 'SonarScanner';
-                                                                withSonarQubeEnv() {
-                                                                 sh "${scannerHome}/bin/sonar-scanner  -Dsonar.host.url=https://sonarqube.local.yetebaberut.com -Dsonar.login=sqp_1b3d308e3c223fbd9f4ac805982c743290a44ac7"
-                                                                }
-    															}
-                                                                }
-                                                            }
-                                                            }
-
-                                                    stage('Quality Gate'){
-                                                                steps {
-                                                                  script {
-                                                                waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonarqube-token'
-    															}
-                                                                }
-                                                            }
-
-
         stage('Build Docker Image'){
             steps{
                 script{
