@@ -37,7 +37,7 @@ dockerImage = ''
                 }
 
 
-                stage('Trigger Jenkins YAML Update Pipeline'){
+                stage('Trigger Jenkins YAML Update Pipeline to ArgoCD'){
                            steps{
                                script{
                                     sh "curl -v -k --user yoniss:11dee7cae1810803b7e2aa51d53ed660c1 -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://192.168.0.139:8080/job/expense-react-argo/buildWithParameters?token=gitops-config'"
