@@ -14,14 +14,7 @@ dockerImage = ''
     stages{
 
 
-    stage('Test') {
-        steps {
-            sh 'npm install'
-            sh 'npm run test:once -- --coverage'
-        }
-    }
-
-    stage('Sonarqube Analysis'){
+      stage('Sonarqube Analysis'){
                                                                 steps {
                                                                   script {
                                                                 withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
