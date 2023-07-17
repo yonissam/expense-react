@@ -45,7 +45,9 @@
   },
   "devDependencies": {
     "install": "^0.13.0",
+    "jest-sonar-reporter": "^2.0.0",
     "npm": "^9.6.2",
+    "sonarqube-scanner": "^3.0.1",
     "tailwindcss": "^3.2.7"
   }
 }
