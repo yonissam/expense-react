@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const apiCient = axios.create({
-  baseURL: "http://expense-spring:8085/api/v1",
+  baseURL: "http://services.yoniss.com/api/v1",
 });
